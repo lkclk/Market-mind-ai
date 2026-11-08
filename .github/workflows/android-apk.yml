@@ -6,6 +6,9 @@ on:
     branches: [main]
     paths:
       - "index.html"
+      - "manifest.webmanifest"
+      - "icon.svg"
+      - "sw.js"
       - "package.json"
       - "capacitor.config.json"
       - ".github/workflows/android-apk.yml"
@@ -38,7 +41,7 @@ jobs:
       - name: Prepare web assets
         run: |
           mkdir -p www
-          cp index.html www/index.html
+          cp index.html manifest.webmanifest icon.svg sw.js www/
 
       - name: Install Capacitor
         run: npm install
@@ -49,11 +52,17 @@ jobs:
       - name: Sync web app
         run: npx cap sync android
 
+      - name: Increase Gradle download timeout
+        working-directory: android
+        run: |
+          sed -i 's/networkTimeout=10000/networkTimeout=120000/' gradle/wrapper/gradle-wrapper.properties
+          grep networkTimeout gradle/wrapper/gradle-wrapper.properties
+
       - name: Build debug APK
         working-directory: android
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew --no-daemon assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
