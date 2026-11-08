@@ -1,0 +1,8 @@
+{
+  "appId": "com.marketmind.ai",
+  "appName": "MarketMind AI",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
