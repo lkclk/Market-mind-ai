@@ -31,6 +31,10 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      - name: Validate dashboard JavaScript
+        run: |
+          node -e "const fs=require('fs'); const html=fs.readFileSync('index.html','utf8'); const match=html.match(/<script>([\\s\\S]*?)<\\/script>/); if(!match) throw new Error('Dashboard script missing'); new Function(match[1]); if(!html.includes('async function getCandles')) throw new Error('Market-data loader missing'); console.log('Dashboard JavaScript and market-data loader validated');"
+
       - name: Prepare web assets
         run: |
           mkdir -p www
