@@ -1,0 +1,6 @@
+name = "marketmind-mt5-relay"
+main = "worker.js"
+compatibility_date = "2026-11-08"
+[[kv_namespaces]]
+binding = "SIGNALS"
+id = "CREATE_KV_NAMESPACE_AND_PASTE_ID_HERE"
