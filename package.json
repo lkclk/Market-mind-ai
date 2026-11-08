@@ -1,0 +1,13 @@
+{
+  "name": "marketmind-ai-android",
+  "version": "0.7.0",
+  "private": true,
+  "description": "Android wrapper for the MarketMind AI Forex dashboard",
+  "dependencies": {
+    "@capacitor/core": "6.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "6.2.0",
+    "@capacitor/android": "6.2.0"
+  }
+}
